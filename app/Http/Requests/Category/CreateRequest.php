@@ -4,6 +4,7 @@ namespace App\Http\Requests\Category;
 
 use App\Http\Requests\BaseFormRequest;
 use App\Models\Category;
+use App\Models\User;
 
 class CreateRequest extends BaseFormRequest
 {
@@ -14,7 +15,7 @@ class CreateRequest extends BaseFormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('create', User::class);
     }
 
     /**

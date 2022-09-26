@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 
 class SuppleirController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');   
+    }
+
     public function index(IndexRequest $request)
     {
         return SuppleirResource::collection(Suppleir::all());

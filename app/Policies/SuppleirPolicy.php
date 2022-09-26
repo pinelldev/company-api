@@ -24,4 +24,19 @@ class SuppleirPolicy
     {
         return true;
     }
+
+    public function view(User $user, Suppleir $suppleir)
+    {
+        return true;
+    }
+
+    public function update(User $user , Suppleir $suppleir)
+    {
+        return true;
+    }
+
+    public function delete(User $user , Suppleir $suppleir)
+    {
+        return true;
+    }
 }

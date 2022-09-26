@@ -2,12 +2,10 @@
 
 namespace App\Http\Requests\Suppleir;
 
-use App\Exceptions\JsonAuthorizationException;
-use App\Exceptions\JsonValidationException;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
+use App\Models\Suppleir;
 
-class ShowRequest extends FormRequest
+class ShowRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,7 +14,9 @@ class ShowRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $suppleir = Suppleir::findOrFail($this->suppleir_id);
+
+        return $this->user()->can('view', $suppleir);
     }
 
     /**
@@ -29,15 +29,5 @@ class ShowRequest extends FormRequest
         return [
             'suppleir_id' => 'numeric'
         ];
-    }
-
-    protected function failedAuthorization()
-    {
-        throw new JsonAuthorizationException;
-    }
-
-    protected function failedValidation(Validator $validator)
-    {
-        throw new JsonValidationException($validator);
     }
 }
