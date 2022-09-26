@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Category;
 
 use App\Http\Requests\BaseFormRequest;
+use App\Models\Category;
 
 class DeleteRequest extends BaseFormRequest
 {
@@ -13,7 +14,9 @@ class DeleteRequest extends BaseFormRequest
      */
     public function authorize()
     {
-        return true;
+        $category = Category::findOrFail($this->category_id);
+
+        return $this->user()->can('delete', $category);
     }
 
     /**

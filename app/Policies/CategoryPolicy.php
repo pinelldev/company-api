@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CategoryPolicy
@@ -24,17 +25,17 @@ class CategoryPolicy
         return true;
     }
 
-    public function show(Category $category, Category $model)
+    public function view(User $user, Category $category)
     {
         return true;
     }
 
-    public function update(Category $category, Category $model)
+    public function update(User $user, Category $category)
     {
         return true;
     }
 
-    public function delete(Category $category, Category $model)
+    public function delete(User $user, Category $category)
     {
         return true;
     }

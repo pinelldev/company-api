@@ -14,7 +14,9 @@ class UpdateRequest extends BaseFormRequest
      */
     public function authorize()
     {
-        return true;
+        $category = Category::findOrFail($this->category_id);
+
+        return $this->user()->can('update', $category);
     }
 
     /**

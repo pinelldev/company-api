@@ -23,18 +23,14 @@ class Category extends Model
 
     public function createModel($request)
     {
-        $category = $this->create($request->only([
-            'name', 'description'
-        ]));
+        $category = $this->create($request->all());
 
         return $category;
     }
 
     public function updateModel($request)
     {
-        $this->update($request->only([
-            'name', 'description'
-        ]));
+        $this->update($request->all());
 
         return $this;
     }

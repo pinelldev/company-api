@@ -9,18 +9,22 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [LoginController::class, 'authenticate']);
 
 // User routes
-Route::get('user/index', [UserController::class, 'index']);
-Route::post('user/create', [UserController::class, 'create']);
-Route::post('user/show', [UserController::class, 'show']);
-Route::put('user/update', [UserController::class, 'update']);
-Route::delete('user/delete', [UserController::class, 'delete']);
+Route::controller(UserController::class)->group(function () {
+    Route::get('user/index', 'index');
+    Route::post('user/create', 'create');
+    Route::post('user/show', 'show');
+    Route::put('user/update', 'update');
+    Route::delete('user/delete', 'delete');
+});
 
 //Category routes
-Route::get('category/index', [CategoryController::class, 'index']);
-Route::post('category/create', [CategoryController::class, 'create']);
-Route::post('category/show', [CategoryController::class, 'show']);
-Route::put('category/update', [CategoryController::class, 'update']);
-Route::delete('category/delete', [CategoryController::class, 'delete']);
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('category/index', 'index');
+    Route::post('category/create', 'create');
+    Route::post('category/show', 'show');
+    Route::put('category/update', 'update');
+    Route::delete('category/delete', 'delete');
+});
 
 //Suppleir routes
 Route::controller(SuppleirController::class)->group(function () {
