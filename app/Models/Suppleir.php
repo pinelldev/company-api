@@ -41,4 +41,9 @@ class Suppleir extends Model
     {
         return $this->delete();
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
