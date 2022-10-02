@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SuppleirController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -33,4 +34,12 @@ Route::controller(SuppleirController::class)->group(function () {
     Route::post('/suppleir/show', 'show');
     Route::put('/suppleir/update', 'update');
     Route::delete('/suppleir/delete', 'delete');
+});
+
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/product/index', 'index');
+    Route::post('/product/create', 'create');
+    Route::post('/product/show', 'show');
+    Route::put('/product/update', 'update');
+    Route::delete('/product/delete', 'delete');
 });
