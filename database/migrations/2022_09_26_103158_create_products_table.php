@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name', 40);
             $table->foreignId('suppleir_id')->constrained('suppleirs')->onUpdate('cascade')->nullable(); 
             $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->nullable();
-            $table->string('quantityPerUnit', 20);
+            $table->integer('quantityPerUnit');
             $table->decimal('unitPrice');
             $table->smallInteger('unitsInStock')->nullable();
             $table->smallInteger('unitsOnOrder')->nullable();
