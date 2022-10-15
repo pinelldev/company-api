@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SuppleirController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,10 +37,20 @@ Route::controller(SuppleirController::class)->group(function () {
     Route::delete('/suppleir/delete', 'delete');
 });
 
+//Product routes
 Route::controller(ProductController::class)->group(function () {
     Route::get('/product/index', 'index');
     Route::post('/product/create', 'create');
     Route::post('/product/show', 'show');
     Route::put('/product/update', 'update');
     Route::delete('/product/delete', 'delete');
+});
+
+//Customer routes
+Route::controller(CustomerController::class)->group(function () {
+    Route::get('/customer/index', 'index');
+    Route::post('/customer/create', 'create');
+    Route::post('/customer/show', 'show');
+    Route::put('/customer/update', 'update');
+    Route::delete('/customer/delete', 'delete');
 });

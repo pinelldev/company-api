@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests\Customer;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
+use App\Models\Customer;
 
-class DeleteRequest extends FormRequest
+class DeleteRequest extends BaseFormRequest
+
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +15,9 @@ class DeleteRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $customer = Customer::findOrFail($this->customer_id);
+
+        return $this->user()->can('delete', $customer);
     }
 
     /**
@@ -24,7 +28,7 @@ class DeleteRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'customer_id' => 'numeric'
         ];
     }
 }

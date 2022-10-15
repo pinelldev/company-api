@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Customer;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
 
-class CreateRequest extends FormRequest
+class CreateRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->user()->can('create', User::class);
     }
 
     /**
@@ -24,7 +24,15 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'companyName' => 'required|string|max:40',
+            'contactName' => 'required|string|max:30',
+            'contactTitle' => 'required|string|max:50',
+            'address' => 'string|max:60',
+            'city' => 'string|max:50',
+            'region' => 'string|max:15',
+            'postalcode' => 'string|max:25',
+            'country' => 'string|max:50',
+            'phone' => 'string|max:25'
         ];
     }
 }

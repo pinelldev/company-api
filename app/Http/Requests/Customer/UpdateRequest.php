@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\Customer;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
+use App\Models\Customer;
 
-class UpdateRequest extends FormRequest
+class UpdateRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,9 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $customer = Customer::findOrFail($this->customer_id);
+
+        return $this->user()->can('update', $customer);
     }
 
     /**
@@ -24,7 +27,15 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'companyName' => 'required|string|max:40',
+            'contactName' => 'required|string|max:30',
+            'contactTitle' => 'required|string|max:50',
+            'address' => 'string|max:60',
+            'city' => 'string|max:50',
+            'region' => 'string|max:15',
+            'postalcode' => 'string|max:25',
+            'country' => 'string|max:50',
+            'phone' => 'string|max:25'
         ];
     }
 }
