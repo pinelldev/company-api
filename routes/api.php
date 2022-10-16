@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SuppleirController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ShipperController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,6 +57,15 @@ Route::controller(CustomerController::class)->group(function () {
     Route::delete('/customer/delete', 'delete');
 });
 
-Route::controller(OrderController::class)->group(function () {
-    Route::get('/order/index', 'index');
+//Shipper routes
+Route::controller(ShipperController::class)->group(function () {
+    Route::get('/shipper/index', 'index');
+    Route::post('/shipper/create', 'create');
+    Route::post('/shipper/show', 'show');
+    Route::put('/shipper/update', 'update');
+    Route::delete('/shipper/delete', 'delete');
 });
+
+// Route::controller(OrderController::class)->group(function () {
+//     Route::get('/order/index', 'index');
+// });
